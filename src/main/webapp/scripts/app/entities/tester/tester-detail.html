@@ -1,0 +1,38 @@
+<div>
+    <h2><span>Tester</span> {{tester.id}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span>Field1</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{tester.field1}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Field2</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{tester.field2}}" readonly>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="tester"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

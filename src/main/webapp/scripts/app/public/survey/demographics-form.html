@@ -1,0 +1,136 @@
+<div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2" ng-init="demoInit()">
+            <h1 class="text-center">Demographics</h1>
+
+            <p>
+                Almost done. Please answer a few more questions so we can send
+
+                you a customized report.
+            </p>
+
+            <form ng-submit="save()" name="editForm">
+
+                <div class="form-group">
+                    <label for="field_email">Email Address</label>
+                    <input type="email" class="form-control" name="email" id="field_email"
+                           ng-model="demographic.email" required="">
+
+                    <div ng-show="editForm.$submitted || editForm.email.$touched">
+                        <p class="text-danger"
+                           ng-show="editForm.email.$error.email">
+                            This field should be an email address.
+                        </p>
+                    </div>
+
+                    <div class="alert alert-warning">
+                        <strong>We need your email to send you
+                            your report.</strong> We will never share your information and your responses are anonymous.
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="field_organization">Organization Name</label>
+
+                    <input type="text"
+                           typeahead="organization for organization in organizations | filter:$viewValue | limitTo:8 "
+                           typeahead-editable="true"
+                           class="form-control" id="field_organization" ng-model="demographic.organization">
+
+
+                </div>
+                <div class="form-group">
+
+                    <label for="field_industry">Industry</label>
+
+                    <select name="field_industry" id="field_industry" ng-model="demographic.industry"
+                            class="form-control">
+                        <option ng-repeat="industry in industries">{{industry}}</option>
+                    </select>
+
+
+                </div>
+
+
+                <div class="form-group">
+                    <label for="field_country">Country</label>
+                    <input type="text" name="countryfld"
+                           typeahead="country for country in countries | filter:$viewValue | limitTo:8 "
+                           typeahead-editable="false"
+                           class="form-control" id="field_country" ng-model="demographic.country">
+
+                    <div ng-show="editForm.$submitted || editForm.countryfld.$touched">
+                        <p class="text-danger" ng-show="editForm.countryfld.$invalid">Country should be selected from
+                            list</p>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_org_size">Approximately how many people work in the organization?</label>
+
+
+                    <select name="field_org_size" id="field_org_size" ng-model="demographic.orgSize"
+                            class="form-control">
+                        <option ng-repeat="orgSize in orgSizes">{{orgSize}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_jobFunction">Department Function</label>
+
+                    <select name="field_jobFunction" id="field_jobFunction" ng-model="demographic.jobFunction"
+                            class="form-control">
+                        <option ng-repeat="jobFunction in jobFunctions">{{jobFunction}}</option>
+                    </select>
+
+
+                </div>
+                <!--
+                <div class="form-group">
+                    <label for="field_organization">Organization Name</label>
+                    <input type="text" class="form-control" name="organization" id="field_organization"
+                           ng-model="demographic.organization">
+
+                    <div ng-show="editForm.organization.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.organization.$error.number">
+                            This field should be a number.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_organization">Organization Name</label>
+                    <input type="text" class="form-control" name="organization" id="field_organization"
+                           ng-model="demographic.organization">
+
+                    <div ng-show="editForm.organization.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.organization.$error.number">
+                            This field should be a number.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_organization">Organization Name</label>
+                    <input type="text" class="form-control" name="organization" id="field_organization"
+                           ng-model="demographic.organization">
+
+                    <div ng-show="editForm.organization.$invalid">
+                        <p class="help-block"
+                           ng-show="editForm.organization.$error.number">
+                            This field should be a number.
+                        </p>
+                    </div>
+                </div>-->
+
+                <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Submit</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

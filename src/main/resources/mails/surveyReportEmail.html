@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="#{email.report.title}">JHipster activation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<p th:text="#{email.report.greeting(${email})}">
+    Dear
+</p>
+
+<p th:text="#{email.report.text1}">
+    Your JHipster account has been created, please click on the URL below to activate it:
+</p>
+
+<p>
+    <a th:href="@{|${reportUrl}|}"
+       th:text="#{email.report.button}">Activation Link</a>
+</p>
+
+<p>
+    Please <a href="http://www.agiletalentcollaborative.com/contact.html">contact</a> us if you have any questions or
+    comments.
+</p>
+<p>
+    <span th:text="#{email.report.salutaion}">Regards, </span>
+    <br/>
+    <em th:text="#{email.signature}">Agile Talent</em>
+</p>
+</body>
+</html>

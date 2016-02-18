@@ -1,0 +1,99 @@
+<div>
+    <h2><span>SurveyFirst</span> {{surveyFirst.id}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span>ID</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{surveyFirst.id}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Survey Name</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{surveyFirst.name}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Access Key</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{surveyFirst.accessKey}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Report Id</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{surveyFirst.reportId}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Country</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{surveyFirst.demographicInfo.country}}"
+                           readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Industry</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{surveyFirst.demographicInfo.industry}}"
+                           readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Organization</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control"
+                           value="{{surveyFirst.demographicInfo.organization}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Organization Size</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{surveyFirst.demographicInfo.orgSize}}"
+                           readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>Job Function</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{surveyFirst.demographicInfo.jobFunction}}"
+                           readonly>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="surveyFirst"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+</div>

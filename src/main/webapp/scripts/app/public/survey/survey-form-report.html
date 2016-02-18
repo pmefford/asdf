@@ -1,0 +1,169 @@
+<style>
+    .line-legend li {
+        list-style: none;
+    }
+
+    .line-legend li span {;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+    }
+</style>
+<div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2" ng-init="load()">
+            <h1 class="text-center">Agile Talent EQ – (individual report)</h1>
+
+            <div class="text-center">
+                Name: {{individualResponse.demographicInfo.email}}<br/>
+                Company: {{individualResponse.demographicInfo.organization}}<br/>
+                Date: {{individualResponse.updated | date:'medium' : '-0700'}}
+
+            </div>
+            <div id="categoryLegend"></div>
+
+            <div>
+                <canvas id="categoryChart" height="200" width="300"></canvas>
+            </div>
+            <h4>Strengths</h4>
+
+            <p ng-if="topcategory==1">
+                Compared to the global norm you rated your company highest in strategic alignment. Organizations with
+                high scores in strategic
+
+                alignment tend to have strong processes for identifying areas where agile talent is most
+
+                beneficial. They also do well providing adequate sponsorship for agile talent and making
+
+                appropriate adjustments when scope changes occur. Defining roles, relationships, and scope of
+
+                initiatives are priorities to these organizations.
+            </p>
+
+            <p ng-if="topcategory==2">
+                Compared to the global norm you rated your company highest in performance alignment. Organizations with
+                high scores in
+
+                performance alignment tend to have well-defined objectives and timelines for projects involving
+
+                external talent. They also do a good job communicating performance expectations and feedback
+
+                to their agile talent.
+            </p>
+
+            <p ng-if="topcategory==3">
+                Compared to the global norm you rated your company highest in administrative alignment. Organizations
+                with high scores in
+
+                administrative alignment work well with agile talent. They respond quickly when dealing with
+
+                external’s concerns and they are not burdened with cumbersome bureaucratic processes like
+
+                contracts and payroll. These organizations view agile talent as welcome colleagues rather than
+
+                outsiders.
+            </p>
+
+            <p ng-if="topcategory==4">
+                Compared to the global norm you rated your company highest in relationship alignment. Organizations that
+                score high in
+
+                relationship alignment place high value on cultural fit when choosing agile talent. They do well
+
+                orienting and engaging their new agile talent. These organizations also tend to have effective
+
+                processes for addressing and managing conflict.
+            </p>
+            <h4>Opportunities</h4>
+
+            <p ng-if="bottomcategory==1">
+                Compared to the global norm you rated your company lowest in strategic alignment. Organizations with low
+                scores in
+
+                strategic alignment tend to have weak processes for identifying areas where agile talent is most
+
+                beneficial. They tend to offer inadequate sponsorship for agile talent and they do not make
+
+                appropriate adjustments when scope changes occur. Defining roles, relationships, and scope of
+
+                initiatives are unlikely priorities to these organizations.
+            </p>
+
+            <p ng-if="bottomcategory==2">
+                Compared to the global norm you rated your company lowest in performance alignment. Organizations with
+                low scores in
+
+                performance alignment generally do not have well-defined objectives and timelines for projects
+
+                involving external talent. Communicating performance expectations and providing performance
+
+                feedback to their agile talent are generally not high priorities to these organizations.
+            </p>
+
+            <p ng-if="bottomcategory==3">
+                Compared to the global norm you rated your company lowest in administrative alignment. Organizations
+                with low scores in
+
+                administrative alignment are often difficult to work with. They do not respond quickly when
+
+                dealing with external’s concerns and they are burdened with cumbersome bureaucratic processes
+
+                like contracts and payroll. These organizations view agile talent as outside interlopers rather than
+
+                welcome colleagues.
+            </p>
+
+            <p ng-if="bottomcategory==4">
+                Compared to the global norm you rated your company lowest in relationship alignment. Organizations that
+                score low in
+
+                relationship alignment tend to not value cultural fit when choosing agile talent. Orientation and
+
+                engagement processes for agile talent are confusing and incomplete. These organizations also
+
+                tend to have ineffective processes for addressing and managing conflict.
+            </p>
+
+            <p>
+                Your perspective is valuable and you can get a more complete picture by asking others at your
+
+                organization to take the group Agile Talent EQ survey. This process works best when you invite
+
+                both internal employees and agile talent to provide feedback for your organization. Contact us to
+
+                learn more.
+
+            <div>
+                <a href="http://www.agiletalentcollaborative.com/contact.html" class="btn btn-danger btn-lg active"
+                   role="button">Learn More...</a>
+            </div>
+            </p>
+            <hr>
+            <h2 class="text-center">Itemized Summary</h2>
+
+            <div id="categoryLegend2"></div>
+            <div class="panel panel-default" ng-repeat="category in categories | orderBy : category.name">
+                <span ng-if="$last" ng-init="categoriesDrawn()"></span>
+
+                <div class="panel-heading"><h4>{{category.name}}</h4></div>
+                <div class="panel-body">
+
+                    <div ng-repeat="question in category.questions | orderBy:'key'">
+
+
+                        <span>{{question.fullText}}</span>
+
+                        <div style="width: 98%">
+                            <canvas id="{{question.key}}" height="100" width="600"></canvas>
+                        </div>
+                        <span ng-if="$last" ng-init="questionsDrawn()"></span>
+
+                    </div>
+                </div>
+            </div>
+            <span ng-if="questionsReady" ng-init="buildCharts()"></span>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+couchbase:
+    cluster:
+        bucket: default
+        ip: 127.0.0.1
+        #ip: 52.32.217.40
+        password: password

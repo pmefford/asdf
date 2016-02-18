@@ -1,0 +1,45 @@
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="mySurveyFirstLabel">Create or edit a SurveyFirst</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>ID</label>
+            <input type="text" class="form-control" name="id"
+                   ng-model="surveyFirst.id" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="field_field1">Field1</label>
+            <input type="number" class="form-control" name="field1" id="field_field1"
+                   ng-model="surveyFirst.field1">
+
+            <div ng-show="editForm.field1.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.field1.$error.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="field_field2">Field2</label>
+            <input type="text" class="form-control" name="field2" id="field_field2"
+                   ng-model="surveyFirst.field2">
+
+            <div ng-show="editForm.field2.$invalid">
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

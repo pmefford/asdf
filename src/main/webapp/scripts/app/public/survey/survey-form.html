@@ -1,0 +1,108 @@
+<div>
+    <div class="row">
+        <p class="col-md-8 col-md-offset-2" ng-init="load()">
+
+        <h1 class="text-center">Agile Talent EQ</h1>
+        <h4>Overview</h4>
+
+        <p>
+            This survey is intended to identify how your organization works with external (agile) talent. If you are
+            an internal organization leader, the results of the survey will help you improve how you manage this
+            talent. If you are an external resource, this survey provides information about how effectively you are
+            engaged while working with a specific client organization. There are no right or wrong answers. The
+            survey results will provide comparative information about how agile talent is aligned and engaged along
+            with the implications of that approach.
+        </p>
+        <strong>Instructions</strong>
+
+        <p>
+            If you are a business leader, please complete the survey about your organization (“this organization”). If
+
+            you are a consultant/external resource (agile talent), please complete the survey with one specific client
+
+            organization (“this organization”) in mind. Please answer each question.
+        </p>
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <div class="container text-center">
+                <span class="badge">1</span> Never&nbsp;&nbsp;&nbsp;
+                <span class="badge">2</span> Rarely&nbsp;&nbsp;&nbsp;
+                <span class="badge">3</span> Occasionally&nbsp;&nbsp;&nbsp;
+                <span class="badge">4</span> Sometimes&nbsp;&nbsp;&nbsp;
+                <span class="badge">5</span> Frequently&nbsp;&nbsp;&nbsp;
+                <span class="badge">6</span> Usually&nbsp;&nbsp;&nbsp;
+                <span class="badge">7</span> Always
+            </div>
+        </nav>
+
+            <form class="form" role="form" name="editForm" ng-submit="next()" show-validation novalidate>
+                <div class="panel panel-default" ng-repeat="category in survey.categories | orderBy : category.name">
+                    <div class="panel-heading">{{category.name}}</div>
+                    <div class="panel-body">
+                        <div ng-repeat="question in category.questions | orderBy : question.key">
+                            <span>{{question.fullText}}</span>
+
+                            <div class="container-fluid" ng-if="question.type == 'range'">
+                                <label class="radio-inline">
+                                    <input type="radio" name="{{question.key}}" ng-model="question.answer"
+                                           id="inlineRadio-$index-1" value="1" required> 1
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="{{question.key}}" ng-model="question.answer"
+                                           id="inlineRadio-$index-2" value="2" required> 2
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="{{question.key}}" ng-model="question.answer"
+                                           id="inlineRadio-$index-3" value="3" required> 3
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="{{question.key}}" ng-model="question.answer"
+                                           id="inlineRadio-$index-4" value="4" required> 4
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="{{question.key}}" ng-model="question.answer"
+                                           id="inlineRadio-$index-5" value="5" required> 5
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="{{question.key}}" ng-model="question.answer"
+                                           id="inlineRadio-$index-6" value="6" required> 6
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="{{question.key}}" ng-model="question.answer"
+                                           id="inlineRadio-$index-7" value="7" required> 7
+                                </label>
+
+                                <div ng-show="editForm.question.key.$invalid">
+                                    <p class="help-block"
+                                       ng-show="editForm.question.key.$error">
+                                        Please choose one answer
+                                    </p>
+                                </div>
+                            </div>
+                            <div ng-if="question.type == 'text'" class="form-group">
+                                <label for="field_field$index">Field2</label>
+                                <input type="text" class="form-control" name="field$index" id="field_field$index"
+                                       ng-model="question.answer">
+
+                            </div>
+                            <div class="radio" ng-if="question.type == 'options'"
+                                 ng-repeat="option in question.options">
+                                <label>
+                                    <input type="radio" name="{{question.key}}"
+                                           ng-model="question.answer"
+                                           value="{{option.text}}"
+                                           required> {{option.text}}
+                                </label>
+                            </div>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Next</span>
+                </button>
+                <span ng-if="editForm.$invalid"
+                      class="text-danger h4">Please make sure every question is answered.</span>
+            </form>
+        </div>
+    </div>
+</div>

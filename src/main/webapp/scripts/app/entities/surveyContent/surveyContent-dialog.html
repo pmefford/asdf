@@ -1,0 +1,105 @@
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="mySurveyContentLabel">Create or edit a SurveyContent</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>ID</label>
+            <input type="text" class="form-control" name="id"
+                   ng-model="surveyContent.id" readonly>
+        </div>
+        <div class="form-group">
+            <label for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                   ng-model="surveyContent.name">
+
+            <div ng-show="editForm.name.$invalid">
+            </div>
+        </div>
+
+        <div ng-repeat="question in surveyContent.questions">
+            <div class="form-group">
+                <label for="{{'questiontxt-'+$index}}">Question Text</label>
+                <span>{{question.key}}</span>
+
+                <div class="input-group" ng-repeat="txt in question.text">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">{{txt.locale}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a ng-click="changeTextLocale(txt,'en_US')">en_US</a></li>
+                            <li><a ng-click="changeTextLocale(txt,'es_US')">es_US</a></li>
+                        </ul>
+                    </div>
+
+                    <input type="text" class="form-control" name="{{'questiontxt-'+$index}}"
+                           id="{{'questiontxt-'+$index}}"
+                           ng-model="txt.fullText">
+
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-danger" ng-if="!$first"
+                                ng-click="clearTranslation(question,txt)">
+                            <span class="small glyphicon glyphicon-minus" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-success" ng-if="$last" ng-click="addTranslation(question)">
+                            <span class="small glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="container-fluid" ng-if="question.type == 'options'">
+                    <label>Options</label>
+
+                    <div class="input-group" ng-repeat="option in question.options">
+
+                        <input type="text" class="form-control" name="{{'questionOpt-'+$index}}"
+                               id="{{'questionOpt-'+$index}}"
+                               ng-model="option.text" ng-model-options="{updateOn:blur}">
+
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-danger" ng-if="!$first"
+                                    ng-click="removeOption(question,$index)">
+                                <span class="small glyphicon glyphicon-minus" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-success" ng-if="$last" ng-click="addOption(question)">
+                                <span class="small glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">{{question.type}} <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a ng-click="chooseType(question,'text')">text</a></li>
+                            <li><a ng-click="chooseType(question,'range')">range</a></li>
+                            <li><a ng-click="chooseType(question,'options')">options</a></li>
+                        </ul>
+                    </div>
+                    <input type="text" class="form-control" id="category$index" ng-model="question.category"
+                           placeholder="Category"/>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success" ng-click="addQuestion()">Add Question
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

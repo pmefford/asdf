@@ -1,0 +1,50 @@
+server:
+    port: 8080
+
+liquibase:
+    context: prod
+
+spring:
+    profiles:
+        active: prod
+    thymeleaf:
+        mode: XHTML
+        cache: true
+couchbase:
+    cluster:
+        bucket: default
+        ip: 172.31.14.11
+        password: yGTKM2Wba2nqUJ
+
+mail:
+    host: smtp.gmail.com
+    port: 587
+    username: support@agiletalentco.com
+    password: Agile2015
+    protocol: smtp
+    tls: true
+    auth: true
+    from: support@agiletalentco.com
+    debug: false
+
+metrics:
+    jmx.enabled: true
+    spark:
+        enabled: false
+        host: localhost
+        port: 9999
+    graphite:
+        enabled: false
+        host: localhost
+        port: 2003
+        prefix: patientfocus
+
+http:
+    cache:
+        timeToLiveInDays: 31
+
+
+report:
+    url: http://eq.agiletalentcollaborative.com/#/report/
+
+
