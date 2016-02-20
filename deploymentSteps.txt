@@ -1,11 +1,13 @@
 Deploying code:
 mvn clean
 mvn -Pprod package -DskipTest
-scp -i /Users/pmefford/apps/aws-keypairs/agile-talent-key.pem target/agiletalent-0.0.1-SNAPSHOT.war ubuntu@52.32.217.40:/home/ubuntu/couchbase
+scp -i /Users/pmefford/apps/aws-keypairs/agile-talent-key.pem target/agiletalent-0.0.1-SNAPSHOT.war ubuntu@52.32.217.40:/home/ubuntu
 ssh -i /Users/pmefford/apps/aws-keypairs/agile-talent-key.pem ubuntu@52.32.217.40
 
 on the server:
 jps  # get the id for process
 kill [process id]
 
-nohup java -jar patientfocus-0.0.1-SNAPSHOT.war --spring.profiles.active=prod > /home/paul/logs.txt 2>&1
+
+Executing the war on server
+nohup java -jar agiletalent-0.0.1-SNAPSHOT.war --spring.profiles.active=prod > /home/ubuntu/logs.txt 2>&1
